@@ -35,6 +35,7 @@ public class HelloWorldController {
 
     @RequestMapping("/processGreetForm")
     public String processGreetProcessForm(HttpServletRequest request, Model model) {
+        // get parameter from request
         String name = request.getParameter("studentName");
         String greet = (!StringUtils.isEmpty(name)) ? "Good day " + name.toUpperCase() + "!" : "Hello There!!";
         model.addAttribute("message", greet);
@@ -43,6 +44,7 @@ public class HelloWorldController {
 
     @RequestMapping("/processGreetFormRequestParam")
     public String processGreetProcessForm(@RequestParam("studentName") String studentName, Model model) {
+        // get parameter from annotation request
         String greet = (!StringUtils.isEmpty(studentName)) ? "Welcome & Good day " + studentName.toUpperCase() + "! " : "Hello There!!";
         model.addAttribute("message", greet);
         return "greetrequestparam";

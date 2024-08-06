@@ -6,11 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- reference CSS file -->
-    <link rel="stylesheet" th:href="@{/styles/main.css}" />
-    <title>Thymeleaf Demo</title>
+    <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+    <title>Hello World Form</title>
 </head>
 <body>
-    <p>Passing Parameter by using Request Get Param </p>
-    <p th:text="${message}"></p>
+    <form th:action="@{/processGreetFormRequestParam}" method="GET">
+        <label for="studentName">Name:</label>
+        <input id="studentName" type="text" name="studentName" placeholder="Please enter your name"/>
+        <input type="submit"/>
+    </form>
 </body>
 </html>

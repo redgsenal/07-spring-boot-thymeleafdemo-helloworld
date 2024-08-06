@@ -3,6 +3,8 @@ package com.springboot.tutorials.thymeleafdemo.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.util.StringUtils;
@@ -14,6 +16,17 @@ public class HelloWorldController {
     @RequestMapping("/showForm")
     public String showForm() {
         return "form";
+    }
+
+    // alternative GET form page
+    @GetMapping("/showFormByGetMethod")
+    public String showFormByGetMethod() {
+        return "formbygetmethod";
+    }
+
+    @GetMapping("/showFormByPostMethod")
+    public String showFormByPostMethod() {
+        return "formbypostmethod";
     }
 
     // show initial HTML form page
@@ -46,6 +59,22 @@ public class HelloWorldController {
     public String processGreetProcessForm(@RequestParam("studentName") String studentName, Model model) {
         // get parameter from annotation request
         String greet = (!StringUtils.isEmpty(studentName)) ? "Welcome & Good day " + studentName.toUpperCase() + "! " : "Hello There!!";
+        model.addAttribute("message", greet);
+        return "greetrequestparam";
+    }
+
+    @GetMapping("/processFormByGet")
+    public String processFormByGet(@RequestParam("studentName") String studentName, Model model) {
+        // get parameter from annotation request
+        String greet = (!StringUtils.isEmpty(studentName)) ? "Hello and Welcome! Have A Good day " + studentName.toUpperCase() + "! " : "Hello There!!";
+        model.addAttribute("message", greet);
+        return "greetrequestparam";
+    }
+
+    @PostMapping("/processFormByPost")
+    public String processFormByPost(@RequestParam("studentName") String studentName, Model model) {
+        // get parameter from annotation request
+        String greet = (!StringUtils.isEmpty(studentName)) ? "Hello and Welcome! Have A Good day " + studentName.toUpperCase() + "! " : "Hello There!!";
         model.addAttribute("message", greet);
         return "greetrequestparam";
     }
